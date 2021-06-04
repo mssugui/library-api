@@ -3,6 +3,7 @@ package com.muhamadsugui.libraryapi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,17 +44,27 @@ public class LibraryApiController {
 
 	@PostMapping("/bookfamily")
 	public BookFamily addBookFamily(@RequestBody BookFamily bookFamily) {
-		BookFamily bookFamilyCreated = libraryApiService.addBookFamily(bookFamily);
-		return bookFamilyCreated;
+		bookFamily.setId(0);
+		try {
+			BookFamily bookFamilyCreated = libraryApiService.addBookFamily(bookFamily);
+			return bookFamilyCreated;
+		} catch (DataIntegrityViolationException ve) {
+			throw new FunctionalException(FunctionalException.VIOLATION_EXCEPTION);
+		}
 	}
 
 	@PutMapping("/bookfamily")
 	public BookFamily updatedBookFamily(@RequestBody BookFamily newBookFamily) {
 
-		if (newBookFamily.getId() == 0) {
+		if (newBookFamily.getId() != 0) {
 			BookFamily registeredBookFamily = libraryApiService.getBookFamilyById(newBookFamily.getId());
 			if (registeredBookFamily != null) {
-				return libraryApiService.updateBookFamily(newBookFamily);
+				registeredBookFamily.setName(newBookFamily.getName());
+				try {
+					return libraryApiService.updateBookFamily(registeredBookFamily);
+				} catch (DataIntegrityViolationException ve) {
+					throw new FunctionalException(FunctionalException.VIOLATION_EXCEPTION);
+				}
 			} else {
 				throw new FunctionalException(FunctionalException.ITEM_NOT_FOUND);
 			}
@@ -74,17 +85,29 @@ public class LibraryApiController {
 
 	@PostMapping("/book")
 	public Book addBook(@RequestBody Book book) {
-		Book bookCreated = libraryApiService.addBook(book);
-		return bookCreated;
+		book.setId(0);
+		try {
+			Book bookCreated = libraryApiService.addBook(book);
+			return bookCreated;
+		} catch (Exception ve) {
+			throw new FunctionalException(FunctionalException.VIOLATION_EXCEPTION);
+		}
+
 	}
 
 	@PutMapping("/book")
 	public Book updatedBook(@RequestBody Book newBook) {
 
-		if (newBook.getId() == 0) {
+		if (newBook.getId() != 0) {
 			Book registeredBook = libraryApiService.getBookById(newBook.getId());
 			if (registeredBook != null) {
-				return libraryApiService.updateBook(newBook);
+				registeredBook.setFamilyId(newBook.getFamilyId());
+				registeredBook.setName(newBook.getName());
+				try {
+					return libraryApiService.updateBook(registeredBook);
+				} catch (DataIntegrityViolationException ve) {
+					throw new FunctionalException(FunctionalException.VIOLATION_EXCEPTION);
+				}
 			} else {
 				throw new FunctionalException(FunctionalException.ITEM_NOT_FOUND);
 			}

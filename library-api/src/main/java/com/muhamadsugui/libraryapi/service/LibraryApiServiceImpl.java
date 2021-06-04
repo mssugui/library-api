@@ -3,6 +3,7 @@ package com.muhamadsugui.libraryapi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,13 +35,13 @@ public class LibraryApiServiceImpl implements LibraryApiService {
 
 	@Override
 	@Transactional
-	public BookFamily addBookFamily(BookFamily bookFamily) {
+	public BookFamily addBookFamily(BookFamily bookFamily) throws DataIntegrityViolationException {
 		return libraryApiDAO.saveBookFamily(bookFamily);
 	}
 
 	@Override
 	@Transactional
-	public BookFamily updateBookFamily(BookFamily bookFamily) {
+	public BookFamily updateBookFamily(BookFamily bookFamily) throws DataIntegrityViolationException {
 		return libraryApiDAO.saveBookFamily(bookFamily);
 	}
 
@@ -58,13 +59,13 @@ public class LibraryApiServiceImpl implements LibraryApiService {
 
 	@Override
 	@Transactional
-	public Book addBook(Book book) {
+	public Book addBook(Book book) throws DataIntegrityViolationException {
 		return libraryApiDAO.saveBook(book);
 	}
 
 	@Override
 	@Transactional
-	public Book updateBook(Book book) {
+	public Book updateBook(Book book) throws DataIntegrityViolationException {
 		return libraryApiDAO.saveBook(book);
 	}
 }
