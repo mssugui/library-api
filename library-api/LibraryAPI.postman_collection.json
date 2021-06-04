@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "8160f643-4064-4c70-ba71-3303ab307091",
+		"name": "LibraryAPI",
+		"description": "# Introduction\nAn API for managing books in a library\n\n# Overview\nA simple API created as a development exercise.\n\n# Rate limit\nCurrently there is no limit on the number of successive calls.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/library-api/bookfamily",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/library-api/bookfamily",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"bookfamily"
+					]
+				},
+				"description": "Returns a list with all the existing book families in the library."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/book",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/library-api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"book"
+					]
+				},
+				"description": "Returns a list with all the books in the library."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/bookfamily",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Classic\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/library-api/bookfamily",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"bookfamily"
+					]
+				},
+				"description": "Inserts a new book family with the name provided."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/book",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"familyId\": 1,\r\n    \"name\": \"The Lion of Flanders\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/library-api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"book"
+					]
+				},
+				"description": "Inserts a new book in the library, with the name provided and under the book family for the given ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/bookfamily",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Romance\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/library-api/bookfamily",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"bookfamily"
+					]
+				},
+				"description": "Modifies the name of the book family for the given ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/book",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"familyId\": 1,\r\n    \"name\": \"The Flax Field\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/library-api/book",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"book"
+					]
+				},
+				"description": "Modifies the name and/or the family of the book for the provided ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/bookfamily/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/library-api/bookfamily/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"bookfamily",
+						"1"
+					]
+				},
+				"description": "Return data about the book family with the provided ID."
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/library-api/book/1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/library-api/book/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"library-api",
+						"book",
+						"1"
+					]
+				},
+				"description": "Return data about the book with the provided ID."
+			},
+			"response": []
+		}
+	]
+}
